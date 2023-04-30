@@ -6,7 +6,6 @@
 - Tailwind CSS
 - React Router
 - DaisyUI
-- Ag Grid React
 - Faker.js
 
 ## How to run this project

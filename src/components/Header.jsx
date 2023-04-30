@@ -3,7 +3,7 @@ const Header = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a href="/" className="btn btn-ghost normal-case text-xl">Expense Tracker</a>
+        <a href="/" className="btn btn-ghost normal-case text-xl">Money Mingle</a>
       </div>
       <div className="flex-none gap-2">
         <div>
