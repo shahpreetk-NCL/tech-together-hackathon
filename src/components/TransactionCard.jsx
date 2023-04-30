@@ -1,88 +1,46 @@
-import React from "react";
-import axios from "axios";
+/* eslint-disable react/prop-types */
 
-const TransactionCard = () => {
-  // get all account id of a customer
-  const accounts = JSON.parse(localStorage.getItem("accounts"));
-  const deposits = [];
-  const withdrawals = [];
-console.log({accounts})
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
 
-  // get all deposits of an account
-  React.useEffect(() => {
-    accounts.forEach((account) => {
-      axios
-        .get(
-          `http://api.nessieisreal.com/accounts/${account._id}/deposits?key=${import.meta.env.VITE_API_KEY
-          }`
-        )
-        .then((response) => {
-          deposits.push(response.data);
-        });
-
-      axios
-        .get(
-          `http://api.nessieisreal.com/accounts/${account._id
-          }/withdrawals?key=${import.meta.env.VITE_API_KEY}`
-        )
-        .then((response) => {
-          withdrawals.push(response.data);
-        });
-    });
-  }, [accounts, deposits, withdrawals]);
-
-  console.log({ deposits });
-
-  const flattenedDeposits = deposits.flat()
-  const flattenedWithdrawals = withdrawals.flat()
-
-  console.log({ flattenedDeposits });
-
-  const mergedTransactions = [
-    ...flattenedDeposits,
-    ...flattenedWithdrawals,
-  ].sort((a, b) => {
-    return new Date(b.transaction_date) - new Date(a.transaction_date);
-  });
-
-  console.log({ mergedTransactions });
+const TransactionCard = ({ transactions }) => {
 
   return (
-    <div className="m-4 p-4 bg-slate-950">
-      <h1 className="text-2xl my-4 text-slate-300">Transactions</h1>
-      <div className="overflow-x-auto">
+    <div className="m-4 p-4 bg-slate-950 rounded-3xl">
+      <h1 className="text-2xl my-4 text-slate-300">All Transactions</h1>
+      <div className="overflow-x-auto overflow-y-auto h-96">
         <table className="table table-zebra w-full">
           {/* head */}
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
-            {/* row 2 */}
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-            {/* row 3 */}
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
+            {transactions.map((trnc, i) =>
+            (
+              <tr key={i}>
+                <th>{i+1}</th>
+                <td className={classNames(trnc.status === "cancelled" ? "text-slate-400 line-through": "")}>{trnc.transaction_date}</td>
+                <td
+                  className={classNames(
+                    trnc.status === "cancelled" ? "text-slate-400 line-through" :
+                    trnc.type === "deposit" ? 'text-emerald-400' : 'text-rose-400',
+                    'font-semibold'
+                  )}
+                >{trnc.type === "deposit" ? "+" : "-"}{trnc.amount}</td>
+                <td className={classNames(trnc.status === "cancelled" ? "text-slate-400 line-through" : "")}>{trnc.status}</td>
+                <td className={classNames(trnc.status === "cancelled" ? "text-slate-400 line-through" : "")}>{trnc.description}</td>
+              </tr>
+            )
+            )}
+
           </tbody>
         </table>
       </div>

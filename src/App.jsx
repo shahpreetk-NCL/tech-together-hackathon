@@ -5,12 +5,10 @@ import Header from "./components/Header";
 // lazy load pages
 const Layout = React.lazy(() => import('./pages/Layout'));
 const Home = React.lazy(() => import('./pages/Home'));
-const Details = React.lazy(() => import('./pages/Details'));
 
 // define routes
 const routes = [
   { path: '/', exact: true, name: 'Home', element: <Home /> },
-  { path: '/details', exact: true, name: 'Details', element: <Details /> },
 ];
 
 function App() {
