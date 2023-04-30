@@ -2,6 +2,7 @@ import React from 'react';
 import ActionTypeCard from '../components/AccountTypeCard';
 import axios from "axios";
 import TransactionCard from "../components/TransactionCard";
+import LineGraph from "../components/LineGraph";
 
 const Home = () => {
   const [accounts, setAccounts] = React.useState([]);
@@ -69,7 +70,9 @@ const Home = () => {
         </div>
       </div>
 
-    {flattenTransactions && <TransactionCard transactions={flattenTransactions} />}
+      {flattenTransactions && <TransactionCard transactions={flattenTransactions} />}
+
+      <LineGraph transactions={ flattenTransactions} />
     </>
   );
 };
