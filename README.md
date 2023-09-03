@@ -12,13 +12,18 @@ Since I have never used the Capital One API or any similar financial API before,
 ## Challenges we ran into
 The Capital One Nessie API provides deposits and withdrawals separately. I wanted to show all transactions and hence needed to collate all the data, sort through transaction_date and then display it. While doing so, I ran into a few issues but was able to do so in the end. I also ran into an issue of trying to expand the project to multiple pages. But because of time limitations, doing so was not possible without sending multiple requests for the same data.
 
-Accomplishments that we're proud of
-Using Capital One Finance API
-Using plotly.js for visualization
-What we learned
-I used Vite for the very first time and it has an amazingly fast refresh speed.
-This was also the first time I used faker.js to generate fake data and post it to an API
-What's next for Money Mingle
+### Accomplishments that we're proud of
+
+- Using Capital One Finance API
+- Using plotly.js for visualization
+
+### What we learned
+
+- I used Vite for the very first time and it has an amazingly fast refresh speed.
+- This was also the first time I used faker.js to generate fake data and post it to an API
+
+### What's next for Money Mingle
+
 Currently, money mingle is just a one page site but I would like to expand on it by showing details of all accounts separately on new pages. Better data handling would also need to be done for this and I would probably use redux-toolkit or similar for doing so.
 
 ## Technologies used
@@ -39,5 +44,6 @@ npm run dev
 ```
 
 # Deployed on
-Microsoft Azure: [https://witty-bay-0fbf03210.3.azurestaticapps.net/](https://witty-bay-0fbf03210.3.azurestaticapps.net/)
-Netlify: [https://money-mingle.netlify.app/](https://money-mingle.netlify.app/)
+Netlify: [https://money-mingle.netlify.app/](https://money-mingle.netlify.app/) (please enable site settings to allow insecure content to view the data)
+
+Microsoft Azure: [https://witty-bay-0fbf03210.3.azurestaticapps.net/](https://witty-bay-0fbf03210.3.azurestaticapps.net/) (does not work)
